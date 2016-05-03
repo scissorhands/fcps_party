@@ -9,6 +9,12 @@ class Students_model extends CI_Model {
 		return $query->result();
 	}
 
+	public function get( $student_id )
+	{
+		$query = $this->db->where("id", $student_id )->get("students");
+		return $query->result() ? $query->row() : null;
+	}
+
 }
 
 /* End of file Students_model.php */

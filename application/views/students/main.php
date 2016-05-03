@@ -2,6 +2,7 @@
 <br>
 <br>
 <br>
+	<?php echo $this->session->flashdata("insert_msg"); ?>
 	<table class="table table-stripped">
 		<thead>
 			<tr>
@@ -20,7 +21,7 @@
 				<td><?php echo $student->email ;?></td>
 				<td><?php echo $student->phone_number ;?></td>
 				<td>
-					<?php echo anchor("promo_orders/add/".$student->id, "Add Promo", 'class="btn btn-success"' ); ?>
+					<?php echo anchor("students/new_order/".$student->id, "Add Promo", 'class="btn btn-success"' ); ?>
 				</td>
 			</tr>
 		<?php endforeach; ?>
