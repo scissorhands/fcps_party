@@ -5,7 +5,7 @@ class Students_model extends CI_Model {
 
 	public function get_all()
 	{
-		$query = $this->db->get("test");
+		$query = $this->db->get("students");
 		return $query->result();
 	}
 

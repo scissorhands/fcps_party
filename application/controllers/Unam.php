@@ -11,7 +11,11 @@ class Unam extends CI_Controller {
 	public function index()
 	{
 		$students = $this->students->get_all();
-		dump( $students );
+		$this->load->view("template/loader", array(
+			"title" => "UNAM - FCPS",
+			"content" => "students/main",
+			"students" => $students
+		));
 	}
 
 }
