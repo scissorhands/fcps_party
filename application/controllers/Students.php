@@ -16,11 +16,9 @@ class Students extends CI_Controller {
 
 	public function index()
 	{
-		$students = $this->students->get_all();
 		$this->load->view("template/loader", array(
 			"title" => "UNAM - FCPS",
-			"content" => "students/main",
-			"students" => $students
+			"content" => "students/main"
 		));
 	}
 

@@ -20,8 +20,9 @@ class Students_model extends CI_Model {
 		if($filter){
 			$where_filter = "name LIKE '%{$filter}%' OR last_name LIKE '%{$filter}%' OR email LIKE '%{$filter}%'";
 		}
-		$this->db->select("name, last_name, email, phone_number, NULL AS menu", false)
-		->from("students AS S");
+		$this->db->select("S.id as student_id, name, last_name, email, phone_number, PO.id AS promo_id", false)
+		->from("students AS S")
+		->join("promo_orders AS PO", "S.id=PO.student_id", "LEFT");
 		if( $filter && $start != null && $length ){
 			$this->db->where($where_filter)
 			->limit($length, $start);
