@@ -3,7 +3,7 @@
 <br>
 <br>
 	<?php echo $this->session->flashdata("insert_msg"); ?>
-	<table class="table table-stripped">
+	<table class="table table-stripped" id="students-list">
 		<thead>
 			<tr>
 				<th>First Name</th>
@@ -14,17 +14,15 @@
 			</tr>
 		</thead>
 		<tbody>
-			<?php foreach ($students as $student): ?>
-			<tr>
-				<td><?php echo $student->name ;?></td>
-				<td><?php echo $student->last_name ;?></td>
-				<td><?php echo $student->email ;?></td>
-				<td><?php echo $student->phone_number ;?></td>
-				<td>
-					<?php echo anchor("students/new_order/".$student->id, "Add Promo", 'class="btn btn-success"' ); ?>
-				</td>
-			</tr>
-		<?php endforeach; ?>
 		</tbody>
 	</table>
 </div>
+<script type="text/javascript" charset="utf-8" async defer>
+$( document ).ready( function(){
+	$("#students-list").dataTable( {
+		"processing": true,
+        "serverSide": true,
+		"ajax": "<?php echo base_url(); ?>datatables/students_list"
+	});
+});
+</script>
