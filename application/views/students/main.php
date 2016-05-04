@@ -2,7 +2,9 @@
 <br>
 <br>
 <br>
-	<?php echo $this->session->flashdata("insert_msg"); ?>
+	<?php if($this->session->flashdata("insert_msg")){ ?>
+		<div class="alert alert-success"><?php echo $this->session->flashdata("insert_msg"); ?></div>
+	<?php } ?>
 	<table class="table table-stripped" id="students-list">
 		<thead>
 			<tr>

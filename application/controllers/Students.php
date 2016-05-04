@@ -9,6 +9,7 @@ class Students extends CI_Controller {
 		parent::__construct();
 		$this->load->model('students_model', 'students');
 		$this->load->model('promos_model', 'promos');
+		$this->load->model('promo_orders_model', 'promo_orders');
 		$this->load->model('utilities_db_model', 'utilities_db');
 		$promos = $this->promos->get_all();
 		$this->promos = parse_to_key_vals($promos, "id", "name");
@@ -34,10 +35,36 @@ class Students extends CI_Controller {
 		));
 	}
 
+	public function new_payment( $promo_order_id = null )
+	{
+		$this->validate_payment();
+		$order = $this->promo_orders->get( $promo_order_id );
+		$this->load->view("template/loader", array(
+			"title" => "New Order Payment",
+			"content" => "students/new_payment",
+			"order" => $order
+		));
+	}
+
+	public function validate_payment()
+	{
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('amount', 'Amount', 'required|greater_than[0]');
+		if ($this->form_validation->run()) {
+			$new_order = array(
+				"promo_order_id" => $this->input->post('order_id'),
+				"amount" => $this->input->post('amount')
+			);
+			$this->utilities_db->generic_insert("order_payments", $new_order );
+			$this->session->set_flashdata('insert_msg', 'New Order Payment Inserted');
+			redirect('students/');	
+		}
+	}
+
 	public function validate_order()
 	{
 		$this->load->library('form_validation');
-		$this->form_validation->set_rules('total_invited', 'Total Invited', 'required');
+		$this->form_validation->set_rules('total_invited', 'Total Invited', 'required|greater_than[0]');
 		if ($this->form_validation->run()) {
 			$new_order = array(
 				"student_id" => $this->input->post('student_id'),

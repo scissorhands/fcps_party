@@ -121,7 +121,7 @@ class Migration_Initial_commit extends CI_Migration {
 					'constraint' => 9,
 					'unsigned' => true
 				),
-				'ammount' => array(
+				'amount' => array(
 					'type' => 'DOUBLE'
 				)
 			)
