@@ -56,7 +56,7 @@ class Students extends CI_Controller {
 				"amount" => $this->input->post('amount')
 			);
 			$this->utilities_db->generic_insert("order_payments", $new_order );
-			$this->session->set_flashdata('insert_msg', 'New Order Payment Inserted');
+			$this->session->set_flashdata('insert_msg', 'Nuevo pago registrado.');
 			redirect('students/');	
 		}
 	}
@@ -85,7 +85,7 @@ class Students extends CI_Controller {
 				"invited_num" => $this->input->post('total_invited')
 			);
 			$this->utilities_db->generic_insert("promo_orders", $new_order );
-			$this->session->set_flashdata('insert_msg', 'New Promo Order Inserted');
+			$this->session->set_flashdata('insert_msg', 'Nuevo pedido registrado.');
 			redirect('students/');	
 		}
 	}

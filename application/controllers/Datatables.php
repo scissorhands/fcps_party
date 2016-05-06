@@ -26,19 +26,29 @@ class Datatables extends CI_Controller {
 		$data = array();
 		foreach ($students as $student) {
 			$buffer = array();
+			$total = $student->student_price + $student->total_invited_price;
+			$perc = $student->total_paid > 0? ($student->total_paid/$total)*100 :0;
 			foreach ($student as $key => $value) {
 				switch ($key) {
 					case 'student_id':
 						break;
 					case 'promo_id':
-						$buffer[] = $value?
-						'<a href="'.base_url().'students/new_payment/'.
-							$value.'" title="Add payment" class="btn btn-primary">New payment</a>' :
-						'<a href="'.base_url().'students/new_order/'.
-							$student->student_id.'" title="Add payment" class="btn btn-success">New order</a>';
+						if( $total > $student->total_paid ){
+							$buffer[] = $value?
+							'<a href="'.base_url().'students/new_payment/'.
+								$value.'" title="Add payment" class="btn btn-primary">Pagos</a>' :
+							'<a href="'.base_url().'students/new_order/'.
+								$student->student_id.'" title="Add payment" class="btn btn-success">Crear pedido</a>';
+						} else {
+							$buffer[] = '';
+						}
 						break;
 					case 'total_to_pay':
-						$buffer[] = $student->student_price + $student->total_invited_price;
+						$buffer[] = $total;
+						break;
+					case 'total_paid':
+						
+						$buffer[] = $this->load->view('tools/progress_bar', array('percentage'=>$perc), TRUE);
 						break;
 					
 					default:

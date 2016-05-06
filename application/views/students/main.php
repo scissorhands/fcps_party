@@ -16,7 +16,6 @@
 				<th>costo invitados</th>
 				<th>costo total</th>
 				<th>pagado</th>
-				<th>por pagar</th>
 				<th>menu</th>
 			</tr>
 		</thead>
