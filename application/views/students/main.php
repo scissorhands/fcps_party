@@ -8,10 +8,14 @@
 	<table class="table table-stripped" id="students-list">
 		<thead>
 			<tr>
-				<th>First Name</th>
-				<th>Last Name</th>
-				<th>email</th>
-				<th>phone number</th>
+				<th>nombre</th>
+				<th>promo</th>
+				<th>pases</th>
+				<th>precio de diferencia</th>
+				<th>precio graduado</th>
+				<th>precio total de invitados</th>
+				<th>pagado</th>
+				<th>por pagar</th>
 				<th>menu</th>
 			</tr>
 		</thead>
