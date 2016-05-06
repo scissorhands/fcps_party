@@ -49,7 +49,7 @@ class Students extends CI_Controller {
 	public function validate_payment()
 	{
 		$this->load->library('form_validation');
-		$this->form_validation->set_rules('amount', 'Amount', 'required|greater_than[0]');
+		$this->form_validation->set_rules('amount', 'Cantidad a pagar', 'required|greater_than[0]|callback_valid_amount['.$this->input->post('order_id').']');
 		if ($this->form_validation->run()) {
 			$new_order = array(
 				"promo_order_id" => $this->input->post('order_id'),
@@ -58,6 +58,19 @@ class Students extends CI_Controller {
 			$this->utilities_db->generic_insert("order_payments", $new_order );
 			$this->session->set_flashdata('insert_msg', 'New Order Payment Inserted');
 			redirect('students/');	
+		}
+	}
+
+	public function valid_amount( $amount, $order_id )
+	{
+		$order = $this->promo_orders->get( $order_id );
+		$total_to_pay = ($order->total_invited_price + $order->student_price) - $order->total_paid;
+		if( $amount > $total_to_pay ){
+			$this->form_validation->set_message('valid_amount', "El campo '{field}'' ".
+				"no debe exceder el total por pagar ($total_to_pay).");
+			return false;
+		} else {
+			return true;
 		}
 	}
 
