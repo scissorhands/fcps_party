@@ -11,9 +11,10 @@
 				<th>nombre</th>
 				<th>promo</th>
 				<th>pases</th>
-				<th>precio de diferencia</th>
+				<th>precio diferencia</th>
 				<th>precio graduado</th>
-				<th>precio total de invitados</th>
+				<th>costo invitados</th>
+				<th>costo total</th>
 				<th>pagado</th>
 				<th>por pagar</th>
 				<th>menu</th>

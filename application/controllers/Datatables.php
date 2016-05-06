@@ -31,13 +31,14 @@ class Datatables extends CI_Controller {
 					case 'student_id':
 						break;
 					case 'promo_id':
-						if($value){
-							$buffer[] = '<a href="'.base_url().'students/new_payment/'.
-							$value.'" title="Add payment" class="btn btn-primary">New payment</a>';
-						} else {
-							$buffer[] = '<a href="'.base_url().'students/new_order/'.
+						$buffer[] = $value?
+						'<a href="'.base_url().'students/new_payment/'.
+							$value.'" title="Add payment" class="btn btn-primary">New payment</a>' :
+						'<a href="'.base_url().'students/new_order/'.
 							$student->student_id.'" title="Add payment" class="btn btn-success">New order</a>';
-						}
+						break;
+					case 'total_to_pay':
+						$buffer[] = $student->student_price + $student->total_invited_price;
 						break;
 					
 					default:

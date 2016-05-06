@@ -26,10 +26,7 @@ class Students_model extends CI_Model {
 			"IFNULL(PG.gap_price, '--') AS gap_price, ".
 			"IF( STRCMP(PT.name, 'Paquete A'), IFNULL(490 + PG.gap_price, 490), IF( PO.invited_num > 2, 490, PT.price) ) AS student_price, ".
 			"IF( PO.invited_num < 10, PT.price*9 + (PO.invited_num - 10)*935 , PT.price*(PO.invited_num-1) ) AS total_invited_price, ".
-			/*
-			"IFNULL(PO.invited_num, '--') as invited, ".
-			"(PT.price * PO.invited_num) as total_to_pay,".
-			*/
+			"NULL AS total_to_pay, ".
 			"IFNULL(OP.total_paid, '--') AS total_paid, IFNULL(NULL, '--') AS left_to_pay, PO.id AS promo_id", false)
 		->from("students AS S")
 		->join("promo_orders AS PO", "S.id=PO.student_id", "LEFT")
