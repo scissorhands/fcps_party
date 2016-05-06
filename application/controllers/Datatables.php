@@ -34,10 +34,10 @@ class Datatables extends CI_Controller {
 						break;
 					case 'promo_id':
 						if( $total > $student->total_paid ){
-							$buffer[] = $value?
-							'<a href="'.base_url().'students/new_payment/'.
-								$value.'" title="Add payment" class="btn btn-primary">Pagos</a>' :
-							'<a href="'.base_url().'students/new_order/'.
+							$buffer[] = '<a href="'.base_url().'students/new_payment/'.
+								$value.'" title="Add payment" class="btn btn-primary">Pagos</a>';
+						} elseif(!$value){
+							$buffer[] = '<a href="'.base_url().'students/new_order/'.
 								$student->student_id.'" title="Add payment" class="btn btn-success">Crear pedido</a>';
 						} else {
 							$buffer[] = '';
