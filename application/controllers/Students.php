@@ -40,7 +40,7 @@ class Students extends CI_Controller {
 		$this->validate_payment();
 		$order = $this->promo_orders->get( $promo_order_id );
 		$this->load->view("template/loader", array(
-			"title" => "New Order Payment",
+			"title" => "Nuevo pago de pedido",
 			"content" => "students/new_payment",
 			"order" => $order
 		));
