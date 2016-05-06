@@ -24,9 +24,9 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
           <ul class="nav navbar-nav">
-            <li <?php echo isset($active) && $active == 'home'? "class='active'" : ""; ?> ><a href="<?php echo base_url(); ?>home/">Home</a></li>
+            <li <?php echo isset($active) && $active == 'home'? "class='active'" : ""; ?> ><a href="<?php echo base_url(); ?>">Home</a></li>
             <li <?php echo isset($active) && $active == 'about'? "class='active'" : ""; ?> ><a href="<?php echo base_url(); ?>home/about">About</a></li>
-            <li <?php echo isset($active) && $active == 'contact'? "class='active'" : ""; ?> ><a href="<?php echo base_url(); ?>home/contact">Contact</a></li>
+            <li <?php echo isset($active) && $active == 'singout'? "class='active'" : ""; ?> ><a href="<?php echo base_url(); ?>home/singout">Salir</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

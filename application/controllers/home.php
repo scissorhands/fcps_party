@@ -16,7 +16,7 @@ class Home extends CI_Controller {
 	public function about()
 	{
 		$data = array(
-			"title" => "About page",
+			"title" => "About",
 			"active" => "about",
 			"content" => "home/about"
 		);
