@@ -20,7 +20,7 @@ class Students extends CI_Controller {
 	public function index()
 	{
 		$this->load->view("template/loader", array(
-			"title" => "UNAM - FCPS",
+			"title" => "Estudiantes",
 			"content" => "students/main"
 		));
 	}
