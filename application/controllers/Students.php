@@ -7,6 +7,8 @@ class Students extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->model('users_model', 'users');
+		$this->users->is_logged_in();
 		$this->load->model('students_model', 'students');
 		$this->load->model('promos_model', 'promos');
 		$this->load->model('promo_orders_model', 'promo_orders');

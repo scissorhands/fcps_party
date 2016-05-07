@@ -81,13 +81,12 @@
             <div class="account-wall">
                 <img class="profile-img" src="<?php echo base_url(); ?>assets/img/fcpys-logo.png?sz=120"
                     alt="">
-                <form class="form-signin">
-                <input type="text" class="form-control" placeholder="Email" required autofocus>
-                <input type="password" class="form-control" placeholder="Password" required>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">
-                    Entrar
-                </button>
-                </form>
+                <?php echo validation_errors("<div class='alert alert-danger'>","</div>"); ?>
+                <?php echo form_open('auth/', 'class="form-signin"'); ?>
+                    <?php echo form_input('email', '', 'class="form-control" placeholder="Email" required autofocus'); ?>
+                    <?php echo form_password('password', '', 'class="form-control" required'); ?>
+                    <?php echo form_submit('submit', 'Entrar', 'class="btn btn-lg btn-primary btn-block"');; ?>
+                <?php echo form_close(); ?>
             </div>
         </div>
     </div>
