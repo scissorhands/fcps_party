@@ -11,23 +11,25 @@
 	<link rel="stylesheet" href="">
 </head>
 <body>
+<?php if( !isset( $disable_nav ) ): ?>
 <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">UNAM FCPyS</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
-          <ul class="nav navbar-nav">
-            <li <?php echo isset($active) && $active == 'home'? "class='active'" : ""; ?> ><a href="<?php echo base_url(); ?>">Home</a></li>
-            <li <?php echo isset($active) && $active == 'about'? "class='active'" : ""; ?> ><a href="<?php echo base_url(); ?>home/about">About</a></li>
-            <li <?php echo isset($active) && $active == 'singout'? "class='active'" : ""; ?> ><a href="<?php echo base_url(); ?>home/singout">Salir</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">UNAM FCPyS</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
+      <ul class="nav navbar-nav">
+        <li <?php echo isset($active) && $active == 'home'? "class='active'" : ""; ?> ><a href="<?php echo base_url(); ?>">Home</a></li>
+        <li <?php echo isset($active) && $active == 'about'? "class='active'" : ""; ?> ><a href="<?php echo base_url(); ?>home/about">About</a></li>
+        <li <?php echo isset($active) && $active == 'singout'? "class='active'" : ""; ?> ><a href="<?php echo base_url(); ?>home/singout">Salir</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
+<?php endif;  ?>
