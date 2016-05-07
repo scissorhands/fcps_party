@@ -3,12 +3,13 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title> Test Site <?php echo isset($title) ? $title : "Project name" ?></title>
+	<title> FCPyS 2016 <?php echo isset($title) ? " - ".$title : "" ?></title>
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/jquery.dataTables.css">
   <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery-1.11.3.min.js"></script>
   <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.dataTables.js"></script>
 	<link rel="stylesheet" href="">
+  <link rel="shortcut icon" type="image/png" href="<?php echo base_url(); ?>assets/img/unam-ico.png"/>
 </head>
 <body>
 <?php if( !isset( $disable_nav ) ): ?>
