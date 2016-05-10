@@ -25,6 +25,33 @@ class Students extends CI_Controller {
 		));
 	}
 
+	public function new_student()
+	{
+		$this->validate_student();
+		$this->load->view("template/loader", array(
+			"title" => "Nuevo estudiante",
+			"content" => "students/new"
+		));
+	}
+
+	public function validate_student()
+	{
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('name', 'Nombre', 'required');
+		$this->form_validation->set_rules('last_name', 'Apellidos', 'required');
+		if ($this->form_validation->run()) {
+			$new_order = array(
+				"name" => $this->input->post('name'),
+				"last_name" => $this->input->post('last_name'),
+				"phone_number" => $this->input->post('phone'),
+				"email" => $this->input->post('email')
+			);
+			$this->utilities_db->generic_insert("students", $new_order );
+			$this->session->set_flashdata('insert_msg', 'Nuevo estudiante registrado.');
+			redirect('students/');	
+		}
+	}
+
 	public function new_order( $student_id = null )
 	{
 		$this->validate_order();
