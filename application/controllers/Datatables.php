@@ -30,6 +30,9 @@ class Datatables extends CI_Controller {
 			$perc = $student->total_paid > 0? ($student->total_paid/$total)*100 :0;
 			foreach ($student as $key => $value) {
 				switch ($key) {
+					case 'full_name':
+						$buffer[] = anchor('students/edit_student/'.$student->student_id, $value );
+						break;
 					case 'student_id':
 						break;
 					case 'promo_id':

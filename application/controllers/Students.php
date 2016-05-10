@@ -34,20 +34,37 @@ class Students extends CI_Controller {
 		));
 	}
 
-	public function validate_student()
+	public function edit_student( $student_id )
+	{
+		$this->validate_student('edit');
+		$student = $this->students->get( $student_id );
+		$this->load->view("template/loader", array(
+			"title" => "Editar estudiante",
+			"content" => "students/edit",
+			"student_id" => $student_id,
+			"student" => $student
+		));
+	}
+
+	public function validate_student( $action = "create" )
 	{
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('name', 'Nombre', 'required');
 		$this->form_validation->set_rules('last_name', 'Apellidos', 'required');
 		if ($this->form_validation->run()) {
-			$new_order = array(
+			$student = array(
 				"name" => $this->input->post('name'),
 				"last_name" => $this->input->post('last_name'),
 				"phone_number" => $this->input->post('phone'),
 				"email" => $this->input->post('email')
 			);
-			$this->utilities_db->generic_insert("students", $new_order );
-			$this->session->set_flashdata('insert_msg', 'Nuevo estudiante registrado.');
+			if( $action == "create" ){
+				$this->utilities_db->generic_insert("students", $student );
+				$this->session->set_flashdata('insert_msg', 'Nuevo estudiante registrado.');
+			} else {
+				$this->utilities_db->generic_update("students", $student, array( "id"=> $this->input->post('student_id') ) );
+				$this->session->set_flashdata('insert_msg', 'Estudiante editado.');
+			}
 			redirect('students/');	
 		}
 	}

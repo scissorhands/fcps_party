@@ -11,6 +11,11 @@ class Utilities_db_model extends CI_Model {
 		return $this->db->insert_id();
 	}
 
+	public function generic_update( $table, $data, $where_clause )
+	{
+		$this->db->where( $where_clause )->update( $table, $data );
+	}
+
 }
 
 /* End of file Utilities_db_model.php */
