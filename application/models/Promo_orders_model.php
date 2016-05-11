@@ -3,6 +3,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Promo_orders_model extends CI_Model {
 
+	public function get_student_order( $id )
+	{
+		$query = $this->db->select(
+			"S.id AS student_id, CONCAT(S.name, ' ', S.last_name) AS full_name,".
+			"PO.promo_id, PT.name as promo_name, PO.invited_num as invited")
+		->from("students AS S")
+		->join("promo_orders AS PO", "S.id = PO.student_id")
+		->join("promo_types AS PT", "PO.promo_id = PT.id")
+		->where("S.id", $id)->get();
+		return $query->result()? $query->row() : null;
+	}
+
 	public function get( $id )
 	{
 		$query = $this->db
