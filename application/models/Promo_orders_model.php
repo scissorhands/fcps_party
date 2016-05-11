@@ -15,6 +15,18 @@ class Promo_orders_model extends CI_Model {
 		return $query->result()? $query->row() : null;
 	}
 
+	public function get_payments( $promo_order_id )
+	{
+		$query = $this->db->where("promo_order_id", $promo_order_id )->get("order_payments");
+		return $query->result();
+	}
+
+	public function get_payment( $payment_id )
+	{
+		$query = $this->db->where("id", $payment_id)->get("order_payments");
+		return $query->result()? $query->row() : null;
+	}
+
 	public function get( $id )
 	{
 		$query = $this->db

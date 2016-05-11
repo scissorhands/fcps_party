@@ -38,7 +38,7 @@ class Datatables extends CI_Controller {
 					case 'promo_id':
 						if( $total > $student->total_paid ){
 							$action_link = '<a href="'.base_url().'students/new_payment/'.
-								$value.'" title="Add payment" class="btn btn-primary">Pagos</a>';
+								$value.'" title="Add payment" class="btn btn-primary">Pagos</a> ';
 							$menu_button = anchor('promo_orders/edit_promo_order/'.$student->student_id, 
 								'<span class="glyphicon glyphicon-tag" aria-hidden="true"></span>', 'class="btn btn-default"');
 							$buffer[] = $action_link.$menu_button;

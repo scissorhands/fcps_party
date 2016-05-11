@@ -34,6 +34,51 @@ class Promo_orders extends CI_Controller {
 		));
 	}
 
+	public function edit_payment( $payment_id )
+	{
+		$this->validate_payment();
+		$payment = $this->promo_orders->get_payment( $payment_id );
+		$order = $this->promo_orders->get( $payment->promo_order_id );	
+		$this->load->view("template/loader", array(
+			"title" => "Editar pago de pedido",
+			"content" => "students/edit_payment",
+			"payment" => $payment,
+			"order" => $order,
+			"hidden" => array(
+					"order_id" => $order->id,
+					"payment_id" => $payment->id
+				)
+		));
+	}
+
+	public function validate_payment()
+	{
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('amount', 'Cantidad a pagar', 'required|greater_than[0]|callback_valid_amount['.$this->input->post('payment_id').']');
+		if ($this->form_validation->run()) {
+			$payment = array(
+				"amount" => $this->input->post('amount')
+			);
+			$this->utilities_db->generic_update("order_payments", $payment, array("id"=> $this->input->post('payment_id')));
+			$this->session->set_flashdata('insert_msg', 'Pago guardado.');
+			redirect('students/');	
+		}
+	}
+
+	public function valid_amount( $amount, $payment_id )
+	{
+		$payment = $this->promo_orders->get_payment( $payment_id );
+		$order = $this->promo_orders->get( $payment->promo_order_id );
+		$total_to_pay = ($order->total_invited_price + $order->student_price) - $order->total_paid + $payment->amount;
+		if( $amount > $total_to_pay ){
+			$this->form_validation->set_message('valid_amount', "El campo '{field}'' ".
+				"no debe exceder el total por pagar ($total_to_pay).");
+			return false;
+		} else {
+			return true;
+		}
+	}
+
 	public function validate_order()
 	{
 		$this->load->library('form_validation');
