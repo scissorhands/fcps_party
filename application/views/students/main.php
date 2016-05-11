@@ -22,7 +22,7 @@
 		<tbody>
 		</tbody>
 	</table>
-	<?php echo anchor('students/new', 'Agregar estudiante', 'class="btn btn-primary"'); ?>
+	<?php echo anchor('students/new_student', 'Agregar estudiante', 'class="btn btn-primary"'); ?>
 </div>
 <script type="text/javascript" charset="utf-8" async defer>
 $( document ).ready( function(){
