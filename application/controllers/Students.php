@@ -34,6 +34,12 @@ class Students extends CI_Controller {
 		));
 	}
 
+	public function delete_student()
+	{
+		$student_id = $this->input->post('student_id');
+		dump( $this->input->post() );
+	}
+
 	public function edit_student( $student_id )
 	{
 		$this->validate_student('edit');
