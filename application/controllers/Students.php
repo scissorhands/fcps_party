@@ -13,6 +13,7 @@ class Students extends CI_Controller {
 		$this->load->model('promos_model', 'promos');
 		$this->load->model('promo_orders_model', 'promo_orders');
 		$this->load->model('utilities_db_model', 'utilities_db');
+		$this->load->model('dbutil_model', 'dbutil');
 		$promos = $this->promos->get_all();
 		$this->promos_arr = parse_to_key_vals($promos, "id", "name");
 	}
@@ -36,8 +37,19 @@ class Students extends CI_Controller {
 
 	public function delete_student()
 	{
-		$student_id = $this->input->post('student_id');
-		dump( $this->input->post() );
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('std_id', 'Student id', 'required|greater_than[0]');
+		if ($this->form_validation->run()) {
+			$student_id = $this->input->post('std_id');
+			$tree = $this->students->get_student_tree( $student_id );
+			$payments = parse_obj_array_to_ids_array( $tree, "payment_id" );
+			$orders = parse_obj_array_to_ids_array( $tree, "order_id" );
+			$this->dbutil->delete_in("order_payments", "id", $payments );
+			$this->dbutil->delete_in("promo_orders", "id", $orders );
+			$this->dbutil->delete_single("students", array("id"=>$student_id) );
+			$this->session->set_flashdata("insert_msg", "Estudiante eliminado.");
+		}
+		redirect("/");
 	}
 
 	public function edit_student( $student_id )

@@ -15,6 +15,16 @@ class Students_model extends CI_Model {
 		return $query->result() ? $query->row() : null;
 	}
 
+	public function get_student_tree( $student_id )
+	{
+		$query = $this->db->select("S.id AS student_id, PO.id AS order_id, OP.id AS payment_id")
+		->from("students AS S")
+		->join("promo_orders AS PO", "S.id=PO.student_id", "LEFT")
+		->join("order_payments AS OP", "PO.id=OP.promo_order_id", "LEFT")
+		->where("S.id", $student_id)->get();
+		return $query->result();
+	}
+
 	public function get_filtered( $filter = null, $start = null, $length = null )
 	{
 		if($filter){
