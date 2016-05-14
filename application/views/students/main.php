@@ -31,5 +31,7 @@ $( document ).ready( function(){
         "serverSide": true,
 		"ajax": "<?php echo base_url(); ?>datatables/students_list"
 	});
+
+	$('.dropdown-toggle').dropdown();
 });
 </script>
