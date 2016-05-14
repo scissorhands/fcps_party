@@ -5,12 +5,13 @@
 	<?php if($this->session->flashdata("insert_msg")){ ?>
 		<div class="alert alert-success"><?php echo $this->session->flashdata("insert_msg"); ?></div>
 	<?php } ?>
+	<?php echo anchor('students/new_student', '+', 'class="btn btn-primary"'); ?>
+	<br>
 	<table class="table table-stripped" id="students-list">
 		<thead>
 			<tr>
 				<th>nombre</th>
 				<th>promo</th>
-				<th>pases</th>
 				<th>precio diferencia</th>
 				<th>precio graduado</th>
 				<th>costo invitados</th>
@@ -22,7 +23,6 @@
 		<tbody>
 		</tbody>
 	</table>
-	<?php echo anchor('students/new_student', 'Agregar estudiante', 'class="btn btn-primary"'); ?>
 </div>
 
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel">

@@ -31,8 +31,7 @@ class Students_model extends CI_Model {
 			$where_filter = "S.name LIKE '%{$filter}%' OR last_name LIKE '%{$filter}%' OR email LIKE '%{$filter}%'";
 		}
 		$this->db->select("S.id as student_id, CONCAT(S.name, ' ', last_name) AS full_name, ".
-			"IFNULL(CONCAT(PT.name, ' ($', PT.price, ')'), '--') as promo_name, ".
-			"IFNULL(PO.invited_num, '--') AS invited_num, ".
+			"IFNULL(CONCAT(PT.name, ' ($', PT.price, ')', '(', PO.invited_num, ')'), '--') as promo_name, ".
 			"IFNULL(PG.gap_price, '--') AS gap_price, ".
 			"IF( STRCMP(PT.name, 'Paquete A'), IFNULL(490 + PG.gap_price, 490), IF( PO.invited_num > 2, 490, PT.price) ) AS student_price, ".
 			"IF( PO.invited_num < 10, PT.price*9 + (PO.invited_num - 10)*935 , PT.price*(PO.invited_num-1) ) AS total_invited_price, ".
